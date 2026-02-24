@@ -1407,34 +1407,58 @@ footer{background:var(--forest);color:rgba(255,255,255,.72);text-align:center;pa
           <!-- wedding car -->
           <g id="heroCar" transform="translate(0,0)">
             <!-- shadow -->
-            <ellipse cx="170" cy="210" rx="70" ry="14" fill="rgba(0,0,0,.16)" />
-            <!-- car body -->
-            <rect x="110" y="170" width="120" height="40" rx="16" fill="#3a5228"/>
-            <rect x="132" y="150" width="76" height="28" rx="10" fill="#f5ede0"/>
-            <!-- windows division -->
-            <path d="M170 150 V178" stroke="#c8a84c" stroke-width="2" opacity=".65"/>
-            <!-- trim -->
-            <rect x="118" y="184" width="104" height="4" rx="2" fill="#c8a84c" opacity=".85"/>
+            <ellipse cx="185" cy="214" rx="92" ry="16" fill="rgba(0,0,0,.16)" />
+
+            <!-- classic convertible body -->
+            <path d="M92 198 Q100 174 126 170 H236 Q270 170 286 194 Q292 204 292 212 Q292 222 282 226 Q266 234 236 234 H126 Q102 234 92 222 Q86 214 92 198 Z"
+              fill="#fffef8" stroke="rgba(122,90,64,.35)" stroke-width="2"/>
+            <!-- darker lower skirt -->
+            <path d="M104 214 H282 Q272 230 236 234 H126 Q106 232 104 214 Z" fill="#e8ddc8" opacity=".9"/>
+
+            <!-- windshield -->
+            <path d="M160 168 L188 168 L204 192 L148 192 Z" fill="rgba(245,237,224,.85)" stroke="rgba(200,168,76,.55)" stroke-width="2"/>
+            <!-- seats -->
+            <path d="M130 198 Q136 184 154 180 H204 Q222 180 232 198 Z" fill="#3a5228" opacity=".9"/>
+            <path d="M138 198 Q146 190 154 190 H202 Q210 190 220 198 Z" fill="#5a6a2a" opacity=".7"/>
+
+            <!-- hood stripe + chrome -->
+            <path d="M126 186 H256" stroke="#c8a84c" stroke-width="3" stroke-linecap="round" opacity=".85"/>
+            <path d="M118 206 H270" stroke="rgba(58,82,40,.25)" stroke-width="2" stroke-linecap="round"/>
+
+            <!-- front bouquet -->
+            <g transform="translate(248 168)">
+              <circle cx="0" cy="0" r="8" fill="#e8b8c0" opacity=".95"/>
+              <circle cx="10" cy="6" r="7" fill="#f0c8d0" opacity=".9"/>
+              <circle cx="-10" cy="6" r="7" fill="#d8a0ac" opacity=".88"/>
+              <ellipse cx="2" cy="14" rx="14" ry="6" fill="#7a9a44" opacity=".7"/>
+              <ellipse cx="-8" cy="16" rx="10" ry="4" fill="#5a7a30" opacity=".65"/>
+              <ellipse cx="12" cy="16" rx="10" ry="4" fill="#6a8a38" opacity=".65"/>
+            </g>
+
             <!-- wheels -->
-            <circle cx="140" cy="212" r="12" fill="#222"/>
-            <circle cx="200" cy="212" r="12" fill="#222"/>
-            <circle cx="140" cy="212" r="6" fill="#f5ede0"/>
-            <circle cx="200" cy="212" r="6" fill="#f5ede0"/>
-            <!-- heart decor -->
-            <path d="M168 166 C164 160 156 160 152 166 C148 172 154 180 168 188 C182 180 188 172 184 166 C180 160 172 160 168 166 Z" fill="#d89aa8" opacity=".95"/>
-            <!-- just married plate -->
-            <rect x="150" y="196" width="40" height="10" rx="3" fill="#f5ede0"/>
-            <text x="170" y="204" text-anchor="middle" font-family="Assistant, sans-serif" font-size="6" fill="#7a5a40">JUST MARRIED</text>
-            <!-- trailing cans -->
-            <line x1="150" y1="210" x2="136" y2="228" stroke="#7a5a40" stroke-width="1.2"/>
-            <line x1="190" y1="210" x2="206" y2="230" stroke="#7a5a40" stroke-width="1.2"/>
-            <rect x="128" y="228" width="10" height="8" rx="2" fill="#c8a84c" opacity=".9"/>
-            <rect x="204" y="230" width="10" height="8" rx="2" fill="#c8a84c" opacity=".9"/>
-            <!-- tiny confetti -->
-            <circle cx="125" cy="186" r="2" fill="#e8b8c0" opacity=".9"/>
-            <circle cx="214" cy="182" r="2" fill="#f0c8d0" opacity=".9"/>
-            <circle cx="132" cy="176" r="2" fill="#dcc57a" opacity=".9"/>
-            <circle cx="208" cy="176" r="2" fill="#dcc57a" opacity=".9"/>
+            <circle cx="132" cy="236" r="15" fill="#222"/>
+            <circle cx="252" cy="236" r="15" fill="#222"/>
+            <circle cx="132" cy="236" r="8" fill="#f5ede0"/>
+            <circle cx="252" cy="236" r="8" fill="#f5ede0"/>
+            <circle cx="132" cy="236" r="3" fill="#c8a84c" opacity=".85"/>
+            <circle cx="252" cy="236" r="3" fill="#c8a84c" opacity=".85"/>
+
+            <!-- rear sign -->
+            <rect x="98" y="206" width="56" height="16" rx="4" fill="#f5ede0" stroke="rgba(122,90,64,.28)" stroke-width="1.5"/>
+            <text x="126" y="217" text-anchor="middle" font-family="Assistant, sans-serif" font-size="7" fill="#7a5a40">JUST</text>
+            <text x="126" y="224" text-anchor="middle" font-family="Assistant, sans-serif" font-size="7" fill="#7a5a40">MARRIED</text>
+
+            <!-- ribbons + cans -->
+            <path d="M110 224 C100 232, 94 244, 86 252" fill="none" stroke="#d4a0a8" stroke-width="2" opacity=".9"/>
+            <path d="M118 226 C112 238, 114 248, 110 258" fill="none" stroke="#dcc57a" stroke-width="2" opacity=".85"/>
+            <rect x="78" y="252" width="12" height="9" rx="2.5" fill="#c8a84c" opacity=".9"/>
+            <rect x="104" y="258" width="12" height="9" rx="2.5" fill="#c8a84c" opacity=".85"/>
+
+            <!-- confetti -->
+            <circle cx="118" cy="184" r="2.2" fill="#e8b8c0" opacity=".9"/>
+            <circle cx="212" cy="176" r="2.2" fill="#f0c8d0" opacity=".9"/>
+            <circle cx="154" cy="166" r="2.2" fill="#dcc57a" opacity=".9"/>
+            <circle cx="232" cy="190" r="2.2" fill="#dcc57a" opacity=".9"/>
           </g>
         </svg>
       </div>
