@@ -736,9 +736,8 @@ footer{background:var(--forest);color:rgba(255,255,255,.72);text-align:center;pa
 </head>
 <body>
 
-<audio id="bgMusic" loop preload="auto">
-  <source src="https://cdn.pixabay.com/audio/2022/02/23/audio_ea70ad08e3.mp3" type="audio/mpeg">
-</audio>
+<!-- YouTube hidden music player (off-screen, proper size so YT API works) -->
+<div id="ytPlayer" style="position:fixed;width:200px;height:113px;bottom:-200px;right:-300px;pointer-events:none;"></div>
 <button class="music-btn" id="musicBtn" onclick="toggleMusic()"><span id="mIcon">♫</span></button>
 <div class="lang">
   <button onclick="L('he')" id="btn-he">עברית</button>
@@ -2017,19 +2016,39 @@ function L(l) {
   });
 }
 
-// ════ MUSIC ════
-let playing = false;
-const mus = document.getElementById('bgMusic');
-mus.volume = 0.28;
+// ════ MUSIC (YouTube) ════
+let playing = false, ytReady = false, ytPlayer, wantsPlay = false;
+
+window.onYouTubeIframeAPIReady = function(){
+  ytPlayer = new YT.Player('ytPlayer',{
+    videoId:'zQIPdNg6SxQ',
+    playerVars:{autoplay:0,loop:1,playlist:'zQIPdNg6SxQ',controls:0,modestbranding:1,rel:0},
+    events:{
+      onReady: function(e){
+        e.target.setVolume(28);
+        ytReady = true;
+        // user already clicked before API was ready — play now
+        if(wantsPlay){ ytPlayer.playVideo(); playing=true; document.getElementById('musicBtn').classList.add('playing'); }
+      }
+    }
+  });
+};
+(function(){ var t=document.createElement('script'); t.src='https://www.youtube.com/iframe_api'; document.head.appendChild(t); })();
+
 function toggleMusic(){
+  if(!ytReady) return;
   playing = !playing;
-  playing ? mus.play().catch(()=>{}) : mus.pause();
+  playing ? ytPlayer.playVideo() : ytPlayer.pauseVideo();
   document.getElementById('musicBtn').classList.toggle('playing', playing);
 }
-let musOnce = false;
 function autoMusic(){
-  if(musOnce) return; musOnce=true;
-  mus.play().then(()=>{playing=true;document.getElementById('musicBtn').classList.add('playing');}).catch(()=>{});
+  if(playing) return;
+  if(ytReady){
+    ytPlayer.playVideo(); playing=true;
+    document.getElementById('musicBtn').classList.add('playing');
+  } else {
+    wantsPlay = true; // remember intent, fire when ready
+  }
 }
 document.addEventListener('click', autoMusic, {once:true});
 document.addEventListener('touchstart', autoMusic, {once:true});
