@@ -388,7 +388,7 @@ body{
 .sec-flowers.br{bottom:0;right:0;transform:scale(-1,-1);}
 
 .logo-img{
-  width:clamp(120px,32vw,200px);
+  width:clamp(180px,45vw,300px);
   height:auto;
   margin-bottom:20px;
   filter:drop-shadow(0 2px 8px rgba(0,0,0,.1));
@@ -736,12 +736,13 @@ footer{background:var(--forest);color:rgba(255,255,255,.72);text-align:center;pa
 </head>
 <body>
 
-<!-- YouTube hidden music player (off-screen, proper size so YT API works) -->
-<div id="ytPlayer" style="position:fixed;width:200px;height:113px;bottom:-200px;right:-300px;pointer-events:none;"></div>
+<audio id="bgMusic" loop preload="auto">
+  <source src="https://s3.prog.co.il/data/audio/1269/1269015-d24c31bce078141484d843a38d554289.mp3" type="audio/mpeg">
+</audio>
 <button class="music-btn" id="musicBtn" onclick="toggleMusic()"><span id="mIcon">♫</span></button>
 <div class="lang">
-  <button onclick="L('he')" id="btn-he">עברית</button>
-  <button onclick="L('en')" id="btn-en" class="active">English</button>
+  <button onclick="L('he')" id="btn-he" class="active">עברית</button>
+  <button onclick="L('en')" id="btn-en">English</button>
   <button onclick="L('fr')" id="btn-fr">Français</button>
 </div>
 
@@ -1993,7 +1994,7 @@ footer{background:var(--forest);color:rgba(255,255,255,.72);text-align:center;pa
 
 <script>
 // ════ LANGUAGE ════
-let lang = 'en';
+let lang = 'he';
 function L(l) {
   lang = l;
   const html = document.documentElement;
@@ -2016,42 +2017,23 @@ function L(l) {
   });
 }
 
-// ════ MUSIC (YouTube) ════
-let playing = false, ytReady = false, ytPlayer, wantsPlay = false;
-
-window.onYouTubeIframeAPIReady = function(){
-  ytPlayer = new YT.Player('ytPlayer',{
-    videoId:'zQIPdNg6SxQ',
-    playerVars:{autoplay:0,loop:1,playlist:'zQIPdNg6SxQ',controls:0,modestbranding:1,rel:0},
-    events:{
-      onReady: function(e){
-        e.target.setVolume(28);
-        ytReady = true;
-        // user already clicked before API was ready — play now
-        if(wantsPlay){ ytPlayer.playVideo(); playing=true; document.getElementById('musicBtn').classList.add('playing'); }
-      }
-    }
-  });
-};
-(function(){ var t=document.createElement('script'); t.src='https://www.youtube.com/iframe_api'; document.head.appendChild(t); })();
-
+// ════ MUSIC ════
+let playing = false;
+const mus = document.getElementById('bgMusic');
+mus.volume = 0.28;
 function toggleMusic(){
-  if(!ytReady) return;
   playing = !playing;
-  playing ? ytPlayer.playVideo() : ytPlayer.pauseVideo();
+  playing ? mus.play().catch(()=>{}) : mus.pause();
   document.getElementById('musicBtn').classList.toggle('playing', playing);
 }
-function autoMusic(){
+function startMusic(){
   if(playing) return;
-  if(ytReady){
-    ytPlayer.playVideo(); playing=true;
-    document.getElementById('musicBtn').classList.add('playing');
-  } else {
-    wantsPlay = true; // remember intent, fire when ready
-  }
+  mus.play().then(()=>{playing=true;document.getElementById('musicBtn').classList.add('playing');}).catch(()=>{});
 }
-document.addEventListener('click', autoMusic, {once:true});
-document.addEventListener('touchstart', autoMusic, {once:true});
+// Try autoplay immediately; if browser blocks it, start on first interaction
+startMusic();
+document.addEventListener('click', startMusic, {once:true});
+document.addEventListener('touchstart', startMusic, {once:true});
 
 // ════ ENVELOPE ════
 let envOpened = false;
@@ -2264,7 +2246,7 @@ function doRSVP(e){
 })();
 
 // ════ INIT ════
-L('en');
+L('he');
 </script>
 </body>
 </html>
