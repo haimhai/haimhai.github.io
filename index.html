@@ -427,10 +427,15 @@ body{
   font-size:clamp(18px,3.5vw,26px);color:var(--soft);margin-bottom:22px;
 }
 .ornament{color:var(--gold);font-size:13px;letter-spacing:10px;margin:18px 0;opacity:.85;}
-.date-row{display:flex;align-items:baseline;justify-content:center;gap:10px;margin:18px 0 34px;}
-.d-month{font-family:'Great Vibes',cursive;font-size:clamp(24px,5vw,36px);color:var(--olive);}
-.d-day{font-family:'Playfair Display',serif;font-size:clamp(54px,10vw,85px);color:var(--forest);font-weight:700;line-height:1;}
-.d-year{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,4vw,32px);color:var(--brown);font-weight:300;}
+.date-row{display:flex;flex-direction:column;align-items:center;gap:6px;margin:18px 0 34px;}
+.d-top{display:flex;align-items:center;gap:14px;width:100%;max-width:320px;justify-content:center;}
+.d-line{flex:1;height:1px;background:var(--olive);opacity:.4;}
+.d-month{font-family:'Cormorant Garamond',serif;font-size:clamp(13px,2.4vw,16px);color:var(--olive);letter-spacing:8px;text-transform:uppercase;}
+.d-day{font-family:'Playfair Display',serif;font-size:clamp(88px,20vw,140px);color:var(--forest);font-weight:700;line-height:.9;margin:2px 0;}
+.d-bottom{display:flex;align-items:center;gap:12px;}
+.d-year{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,3vw,20px);color:var(--brown);font-weight:300;}
+.d-sep{color:var(--gold);opacity:.7;}
+.d-heb{font-family:'Assistant',sans-serif;font-size:clamp(12px,2vw,14px);color:var(--soft);}
 
 /* photo collage */
 .collage{
@@ -1325,9 +1330,17 @@ footer{background:var(--forest);color:rgba(255,255,255,.72);text-align:center;pa
     </div>
 
     <div class="date-row fi">
-      <span class="d-month" data-he="מאי" data-en="May" data-fr="Mai">May</span>
+      <div class="d-top">
+        <span class="d-line"></span>
+        <span class="d-month fi" data-he="מ · א · י" data-en="M · A · Y" data-fr="M · A · I">מ · א · י</span>
+        <span class="d-line"></span>
+      </div>
       <span class="d-day">26</span>
-      <span class="d-year">2026</span>
+      <div class="d-bottom">
+        <span class="d-year">2026</span>
+        <span class="d-sep">·</span>
+        <span class="d-heb fi" data-he="י׳ סיון תשפ״ו" data-en="10 Sivan 5786" data-fr="10 Sivan 5786">י׳ סיון תשפ״ו</span>
+      </div>
     </div>
 
     <div class="collage fi bloom-anchor" id="collageSection">
@@ -1729,7 +1742,7 @@ footer{background:var(--forest);color:rgba(255,255,255,.72);text-align:center;pa
       <div class="dc">
         <div class="dc-icon">🎶</div>
         <div class="dc-title" data-he="מסיבה" data-en="Party!" data-fr="La Fête !">Party!</div>
-        <div class="dc-he">ריקודים עד הלילה<br>אוכל ואלכוהול טוב</div>
+        <div class="dc-he">מסיבה אוכל וריקודים</div>
         <div class="dc-time" data-he="כל הלילה" data-en="All night" data-fr="Toute la nuit">All night</div>
       </div>
     </div>
