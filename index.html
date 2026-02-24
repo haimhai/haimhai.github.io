@@ -206,6 +206,41 @@ body{
   border-top:  calc(clamp(160px,38vw,260px)*0.52) solid #f0e8d8;
 }
 
+/* vertical side florals hugging envelope */
+.env-side-floral{
+  position:absolute;
+  top:10px;
+  bottom:12px;
+  width:clamp(48px,11vw,78px);
+  height:auto;
+  z-index:4;
+  pointer-events:none;
+  opacity:.92;
+  filter:drop-shadow(0 10px 18px rgba(0,0,0,.18));
+}
+.env-side-floral.side-l{left:-6px;}
+.env-side-floral.side-r{right:-6px;transform:scaleX(-1);}
+[dir="rtl"] .env-side-floral.side-l{left:auto;right:-6px;}
+[dir="rtl"] .env-side-floral.side-r{right:auto;left:-6px;transform:scaleX(1);}
+
+/* bigger side blooms layer */
+.env-side-blooms{
+  position:absolute;
+  top:0;bottom:0;
+  width:clamp(86px,20vw,140px);
+  z-index:3;
+  pointer-events:none;
+  opacity:.92;
+  filter:drop-shadow(0 16px 26px rgba(0,0,0,.18));
+}
+.env-side-blooms.side-l{left:-34px;}
+.env-side-blooms.side-r{right:-34px;transform:scaleX(-1);}
+[dir="rtl"] .env-side-blooms.side-l{left:auto;right:-34px;}
+[dir="rtl"] .env-side-blooms.side-r{right:auto;left:-34px;transform:scaleX(1);}
+
+.env.opening .env-side-floral,
+.env.opening .env-side-blooms{opacity:0;transition:opacity .25s ease;}
+
 /* CARD inside - HIDDEN when closed, animates up when opened */
 .env-card{
   position:absolute;
@@ -403,6 +438,30 @@ body{
   margin:8px auto 40px;position:relative;
   max-width:520px;min-height:240px;
 }
+
+.hero-scene{
+  position:relative;
+  margin:0 auto;
+  width:100%;
+  max-width:520px;
+  height:clamp(190px,36vw,260px);
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  z-index:1;
+  pointer-events:none;
+}
+.hero-scene svg{
+  width:100%;
+  height:100%;
+  display:block;
+}
+#heroWall,#heroCar{
+  transform-origin:50% 50%;
+  transition:transform .5s ease-out;
+  will-change:transform;
+}
+
 .pf{
   position:relative;background:#fff;
   border:5px solid #fff;
@@ -959,6 +1018,114 @@ footer{background:var(--forest);color:rgba(255,255,255,.72);text-align:center;pa
         <div class="env-bottom"></div>
         <div class="env-inner-flap"></div>
         <div class="env-flap"></div>
+
+        <!-- extra florals hugging the sides of the envelope -->
+        <svg class="env-side-blooms side-l" viewBox="0 0 170 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <radialGradient id="sbp" cx="35%" cy="30%" r="70%">
+              <stop offset="0" stop-color="#f6d6da" stop-opacity=".95"/>
+              <stop offset=".55" stop-color="#e8b8c0" stop-opacity=".9"/>
+              <stop offset="1" stop-color="#d8a0ac" stop-opacity=".85"/>
+            </radialGradient>
+            <radialGradient id="sbg" cx="35%" cy="25%" r="75%">
+              <stop offset="0" stop-color="#ffffff" stop-opacity=".35"/>
+              <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <!-- vine -->
+          <path d="M82 260 Q56 210 70 168 Q84 125 64 82 Q52 56 66 22" fill="none" stroke="#5a7530" stroke-width="3.2" stroke-linecap="round" opacity=".9"/>
+          <!-- big bloom 1 -->
+          <g transform="translate(40 140) rotate(-8)">
+            <circle cx="52" cy="52" r="42" fill="url(#sbp)"/>
+            <circle cx="52" cy="52" r="42" fill="url(#sbg)"/>
+            <circle cx="52" cy="52" r="32" fill="none" stroke="rgba(255,255,255,.26)" stroke-width="2"/>
+            <circle cx="52" cy="52" r="8" fill="#c8a84c" opacity=".8"/>
+          </g>
+          <!-- big bloom 2 -->
+          <g transform="translate(26 54) rotate(10)">
+            <circle cx="52" cy="52" r="34" fill="url(#sbp)" opacity=".95"/>
+            <circle cx="52" cy="52" r="34" fill="url(#sbg)"/>
+            <circle cx="52" cy="52" r="6" fill="#c8a84c" opacity=".75"/>
+          </g>
+          <!-- leaves -->
+          <ellipse cx="104" cy="198" rx="30" ry="10" fill="#7a9a44" transform="rotate(18 104 198)" opacity=".9"/>
+          <ellipse cx="112" cy="92" rx="26" ry="9" fill="#6a8a38" transform="rotate(26 112 92)" opacity=".9"/>
+          <ellipse cx="36" cy="106" rx="22" ry="8" fill="#5a7a30" transform="rotate(-24 36 106)" opacity=".9"/>
+          <!-- tiny accents -->
+          <circle cx="132" cy="142" r="3" fill="#f6d6da" opacity=".85"/>
+          <circle cx="120" cy="156" r="2.6" fill="#f6d6da" opacity=".75"/>
+          <circle cx="140" cy="162" r="2.4" fill="#f6d6da" opacity=".7"/>
+        </svg>
+
+        <svg class="env-side-blooms side-r" viewBox="0 0 170 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <radialGradient id="sbp2" cx="35%" cy="30%" r="70%">
+              <stop offset="0" stop-color="#f6d6da" stop-opacity=".95"/>
+              <stop offset=".55" stop-color="#e8b8c0" stop-opacity=".9"/>
+              <stop offset="1" stop-color="#d8a0ac" stop-opacity=".85"/>
+            </radialGradient>
+            <radialGradient id="sbg2" cx="35%" cy="25%" r="75%">
+              <stop offset="0" stop-color="#ffffff" stop-opacity=".35"/>
+              <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <path d="M82 260 Q56 210 70 168 Q84 125 64 82 Q52 56 66 22" fill="none" stroke="#5a7530" stroke-width="3.2" stroke-linecap="round" opacity=".9"/>
+          <g transform="translate(40 140) rotate(-8)">
+            <circle cx="52" cy="52" r="42" fill="url(#sbp2)"/>
+            <circle cx="52" cy="52" r="42" fill="url(#sbg2)"/>
+            <circle cx="52" cy="52" r="32" fill="none" stroke="rgba(255,255,255,.26)" stroke-width="2"/>
+            <circle cx="52" cy="52" r="8" fill="#c8a84c" opacity=".8"/>
+          </g>
+          <g transform="translate(26 54) rotate(10)">
+            <circle cx="52" cy="52" r="34" fill="url(#sbp2)" opacity=".95"/>
+            <circle cx="52" cy="52" r="34" fill="url(#sbg2)"/>
+            <circle cx="52" cy="52" r="6" fill="#c8a84c" opacity=".75"/>
+          </g>
+          <ellipse cx="104" cy="198" rx="30" ry="10" fill="#7a9a44" transform="rotate(18 104 198)" opacity=".9"/>
+          <ellipse cx="112" cy="92" rx="26" ry="9" fill="#6a8a38" transform="rotate(26 112 92)" opacity=".9"/>
+          <ellipse cx="36" cy="106" rx="22" ry="8" fill="#5a7a30" transform="rotate(-24 36 106)" opacity=".9"/>
+          <circle cx="132" cy="142" r="3" fill="#f6d6da" opacity=".85"/>
+          <circle cx="120" cy="156" r="2.6" fill="#f6d6da" opacity=".75"/>
+          <circle cx="140" cy="162" r="2.4" fill="#f6d6da" opacity=".7"/>
+        </svg>
+
+        <svg class="env-side-floral side-l" viewBox="0 0 80 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M40 200 Q36 155 42 120 Q46 90 40 60 Q37 40 40 15" fill="none" stroke="#5a7530" stroke-width="2.6" stroke-linecap="round"/>
+          <ellipse cx="26" cy="168" rx="18" ry="6" fill="#7a9a44" transform="rotate(-26 26 168)"/>
+          <ellipse cx="54" cy="146" rx="16" ry="5.5" fill="#6a8a38" transform="rotate(24 54 146)"/>
+          <ellipse cx="24" cy="128" rx="15" ry="5" fill="#5a7a30" transform="rotate(-22 24 128)"/>
+          <ellipse cx="52" cy="110" rx="14" ry="4.8" fill="#7a9a44" transform="rotate(20 52 110)"/>
+          <!-- lower bloom -->
+          <circle cx="24" cy="138" r="6.5" fill="#e8b8c0" opacity=".9"/>
+          <circle cx="18" cy="146" r="5.5" fill="#d8a0ac" opacity=".85"/>
+          <circle cx="30" cy="146" r="5.2" fill="#f0c8d0" opacity=".85"/>
+          <!-- small upper bud -->
+          <path d="M40 96 Q34 84 30 76" fill="none" stroke="#5a7530" stroke-width="2" stroke-linecap="round"/>
+          <ellipse cx="28" cy="68" rx="6" ry="16" fill="#e0b0bc" transform="rotate(-18 28 68)" opacity=".85"/>
+          <ellipse cx="28" cy="68" rx="6" ry="16" fill="#d0a0b0" transform="rotate(18 28 68)" opacity=".8"/>
+          <ellipse cx="28" cy="68" rx="5.2" ry="14" fill="#edd0d8" transform="rotate(-46 28 68)" opacity=".75"/>
+          <!-- tiny accents -->
+          <circle cx="22" cy="58" r="2" fill="#b07080" opacity=".55"/>
+          <circle cx="34" cy="58" r="2" fill="#b07080" opacity=".55"/>
+        </svg>
+
+        <svg class="env-side-floral side-r" viewBox="0 0 80 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M40 200 Q36 155 42 120 Q46 90 40 60 Q37 40 40 15" fill="none" stroke="#5a7530" stroke-width="2.6" stroke-linecap="round"/>
+          <ellipse cx="26" cy="168" rx="18" ry="6" fill="#7a9a44" transform="rotate(-26 26 168)"/>
+          <ellipse cx="54" cy="146" rx="16" ry="5.5" fill="#6a8a38" transform="rotate(24 54 146)"/>
+          <ellipse cx="24" cy="128" rx="15" ry="5" fill="#5a7a30" transform="rotate(-22 24 128)"/>
+          <ellipse cx="52" cy="110" rx="14" ry="4.8" fill="#7a9a44" transform="rotate(20 52 110)"/>
+          <circle cx="24" cy="138" r="6.5" fill="#e8b8c0" opacity=".9"/>
+          <circle cx="18" cy="146" r="5.5" fill="#d8a0ac" opacity=".85"/>
+          <circle cx="30" cy="146" r="5.2" fill="#f0c8d0" opacity=".85"/>
+          <path d="M40 96 Q34 84 30 76" fill="none" stroke="#5a7530" stroke-width="2" stroke-linecap="round"/>
+          <ellipse cx="28" cy="68" rx="6" ry="16" fill="#e0b0bc" transform="rotate(-18 28 68)" opacity=".85"/>
+          <ellipse cx="28" cy="68" rx="6" ry="16" fill="#d0a0b0" transform="rotate(18 28 68)" opacity=".8"/>
+          <ellipse cx="28" cy="68" rx="5.2" ry="14" fill="#edd0d8" transform="rotate(-46 28 68)" opacity=".75"/>
+          <circle cx="22" cy="58" r="2" fill="#b07080" opacity=".55"/>
+          <circle cx="34" cy="58" r="2" fill="#b07080" opacity=".55"/>
+        </svg>
+
         <!-- CARD (hidden until open) -->
         <div class="env-card" id="envCard">
           <img src="https://theyaakovians.my.canva.site/_assets/media/eef02a8efcf7b77f5d2516760c03482f.png"
@@ -1188,9 +1355,89 @@ footer{background:var(--forest);color:rgba(255,255,255,.72);text-align:center;pa
         <circle cx="43" cy="1" r="2.5" fill="#c8a048"/>
       </svg>
 
-      <div class="pf"><div class="pi"></div></div>
-      <div class="pf"><div class="pi p2"></div></div>
-      <div class="pf"><div class="pi p3"></div></div>
+      <!-- Western Wall + wedding car hero illustration -->
+      <div class="hero-scene" id="heroScene">
+        <svg viewBox="0 0 600 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- soft background sky -->
+          <defs>
+            <linearGradient id="heroSkyGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#f9f1e0"/>
+              <stop offset="1" stop-color="#f5ede0"/>
+            </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="600" height="260" fill="url(#heroSkyGrad)"/>
+
+          <!-- distant Jerusalem skyline -->
+          <g opacity=".55">
+            <rect x="40" y="70" width="520" height="32" fill="#d3c2a0"/>
+            <rect x="60" y="52" width="70" height="22" fill="#d9c7a5"/>
+            <rect x="150" y="46" width="90" height="28" fill="#d0bea0"/>
+            <rect x="270" y="50" width="80" height="24" fill="#d9c7a5"/>
+            <rect x="380" y="46" width="70" height="28" fill="#d0bea0"/>
+            <rect x="470" y="54" width="60" height="20" fill="#d9c7a5"/>
+            <!-- golden dome -->
+            <circle cx="325" cy="38" r="18" fill="#c8a84c"/>
+            <rect x="309" y="38" width="32" height="10" fill="#b7993e"/>
+          </g>
+
+          <!-- Western Wall -->
+          <g id="heroWall">
+            <rect x="40" y="90" width="520" height="90" rx="6" fill="#e2d2b2"/>
+            <!-- horizontal courses -->
+            <path d="M40 120 H560 M40 150 H560" stroke="#ccb897" stroke-width="1"/>
+            <!-- bricks (simplified) -->
+            <g stroke="#ccb897" stroke-width="1">
+              <path d="M80 90 V180 M140 90 V180 M200 90 V180 M260 90 V180 M320 90 V180 M380 90 V180 M440 90 V180 M500 90 V180"/>
+            </g>
+            <!-- warm shading -->
+            <rect x="40" y="90" width="520" height="90" fill="url(#heroWallShade)" opacity=".35"/>
+          </g>
+          <defs>
+            <linearGradient id="heroWallShade" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ffffff" stop-opacity=".4"/>
+              <stop offset="1" stop-color="#c7b291" stop-opacity=".7"/>
+            </linearGradient>
+          </defs>
+
+          <!-- plaza ground -->
+          <rect x="0" y="180" width="600" height="80" fill="#e8ddc8"/>
+          <rect x="0" y="190" width="600" height="60" fill="#d9cbb2" opacity=".7"/>
+          <path d="M40 190 Q300 210 560 190" fill="none" stroke="#c7b291" stroke-width="1" opacity=".6"/>
+
+          <!-- wedding car -->
+          <g id="heroCar" transform="translate(0,0)">
+            <!-- shadow -->
+            <ellipse cx="170" cy="210" rx="70" ry="14" fill="rgba(0,0,0,.16)" />
+            <!-- car body -->
+            <rect x="110" y="170" width="120" height="40" rx="16" fill="#3a5228"/>
+            <rect x="132" y="150" width="76" height="28" rx="10" fill="#f5ede0"/>
+            <!-- windows division -->
+            <path d="M170 150 V178" stroke="#c8a84c" stroke-width="2" opacity=".65"/>
+            <!-- trim -->
+            <rect x="118" y="184" width="104" height="4" rx="2" fill="#c8a84c" opacity=".85"/>
+            <!-- wheels -->
+            <circle cx="140" cy="212" r="12" fill="#222"/>
+            <circle cx="200" cy="212" r="12" fill="#222"/>
+            <circle cx="140" cy="212" r="6" fill="#f5ede0"/>
+            <circle cx="200" cy="212" r="6" fill="#f5ede0"/>
+            <!-- heart decor -->
+            <path d="M168 166 C164 160 156 160 152 166 C148 172 154 180 168 188 C182 180 188 172 184 166 C180 160 172 160 168 166 Z" fill="#d89aa8" opacity=".95"/>
+            <!-- just married plate -->
+            <rect x="150" y="196" width="40" height="10" rx="3" fill="#f5ede0"/>
+            <text x="170" y="204" text-anchor="middle" font-family="Assistant, sans-serif" font-size="6" fill="#7a5a40">JUST MARRIED</text>
+            <!-- trailing cans -->
+            <line x1="150" y1="210" x2="136" y2="228" stroke="#7a5a40" stroke-width="1.2"/>
+            <line x1="190" y1="210" x2="206" y2="230" stroke="#7a5a40" stroke-width="1.2"/>
+            <rect x="128" y="228" width="10" height="8" rx="2" fill="#c8a84c" opacity=".9"/>
+            <rect x="204" y="230" width="10" height="8" rx="2" fill="#c8a84c" opacity=".9"/>
+            <!-- tiny confetti -->
+            <circle cx="125" cy="186" r="2" fill="#e8b8c0" opacity=".9"/>
+            <circle cx="214" cy="182" r="2" fill="#f0c8d0" opacity=".9"/>
+            <circle cx="132" cy="176" r="2" fill="#dcc57a" opacity=".9"/>
+            <circle cx="208" cy="176" r="2" fill="#dcc57a" opacity=".9"/>
+          </g>
+        </svg>
+      </div>
 
       <!-- botanical right spray -->
       <svg class="spray sr" width="75" height="170" viewBox="0 0 75 170">
@@ -1783,8 +2030,36 @@ function openEnv(){
 function initMain(){
   initScrollObserver();
   initScrollFlowers();
+  initHeroSceneMotion();
   updateCD();
   setInterval(updateCD, 1000);
+}
+
+// Western Wall + car subtle motion on scroll
+function initHeroSceneMotion(){
+  const hero = document.querySelector('.s-hero');
+  const car  = document.getElementById('heroCar');
+  const wall = document.getElementById('heroWall');
+  if(!hero || !car || !wall) return;
+
+  const onScroll = () => {
+    const rect = hero.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight || 1;
+    // progress 0 (top off-screen) → 1 (center of section near middle of viewport)
+    const center = rect.top + rect.height / 2;
+    let t = 1 - center / vh;
+    t = Math.max(0, Math.min(1, t));
+
+    const carX = t * 120;
+    const carY = -t * 8;
+    const wallY = -t * 4;
+
+    car.style.transform = 'translate(' + carX + 'px,' + carY + 'px)';
+    wall.style.transform = 'translate(' + (-carX * 0.18) + 'px,' + wallY + 'px)';
+  };
+
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
 }
 
 // ════ SCROLL OBSERVER (fade-in) ════
